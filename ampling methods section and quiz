@@ -1,0 +1,24 @@
+[33mcommit 496e2ef3204f10ff4e0d2ef7877cfb63109f942b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Jake Blankenship <jblank24@vols.utk.edu>
+Date:   Tue Jan 21 09:21:53 2025 -0500
+
+    Update R Studio setup video and add sampling methods section
+
+ .env                                              |   7 [31m-[m
+ .env.local                                        |   3 [31m-[m
+ public/images/CC.png                              | Bin [31m0[m -> [32m342919[m bytes
+ public/images/Dwight.gif                          | Bin [31m0[m -> [32m1824171[m bytes
+ public/images/Hunger.gif                          | Bin [31m0[m -> [32m293249[m bytes
+ public/images/Kirk.gif                            | Bin [31m0[m -> [32m721728[m bytes
+ public/images/Patrick.gif                         | Bin [31m0[m -> [32m262315[m bytes
+ public/images/Shark attack.png                    | Bin [31m0[m -> [32m387501[m bytes
+ public/images/random-snl.gif                      | Bin [31m0[m -> [32m271236[m bytes
+ public/images/speech-bubble.svg                   |  35 [32m++[m
+ public/images/two guys chatting.jpg               | Bin [31m0[m -> [32m1370973[m bytes
+ src/app/chapters/1/page.tsx                       |  22 [32m+[m[31m-[m
+ src/app/chapters/1/r-studio-setup/page.tsx        |   3 [32m+[m[31m-[m
+ src/app/chapters/1/sampling-methods/page.tsx      | 415 [32m++++++++++++++++++++++[m
+ src/app/chapters/1/sampling-methods/quiz/page.tsx | 163 [32m+++++++++[m
+ src/app/chapters/2/brain-rot/page.tsx             | 283 [32m+++++++++++++++[m
+ src/app/chapters/2/page.tsx                       |  91 [32m+++++[m
+ 17 files changed, 1008 insertions(+), 14 deletions(-)

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="white"/>
+  
+  <!-- Grid -->
+  
+    <line x1="50" y1="50" x2="750" y2="50" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="90" x2="750" y2="90" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="130" x2="750" y2="130" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="170" x2="750" y2="170" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="210" x2="750" y2="210" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="250" x2="750" y2="250" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="290" x2="750" y2="290" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="330" x2="750" y2="330" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="370" x2="750" y2="370" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="410" x2="750" y2="410" 
+          stroke="#eee" stroke-width="1"/>
+  
+  
+  <!-- Axes -->
+  <line x1="50" y1="450" x2="750" y2="450" stroke="#58595b" stroke-width="2"/>
+  <line x1="50" y1="50" x2="50" y2="450" stroke="#58595b" stroke-width="2"/>
+  
+  <!-- Box Plots -->
+  
+        <!-- Box -->
+        <rect x="130" y="206.32887065170556" width="40" height="62.684238387499846" 
+              fill="#ff8200" opacity="0.6" stroke="#58595b"/>
+        
+        <!-- Median -->
+        <line x1="130" y1="225.1805238350568" x2="170" y2="225.1805238350568" 
+              stroke="#58595b" stroke-width="2"/>
+        
+        <!-- Whiskers -->
+        <line x1="150" y1="192.8697269688861" x2="150" y2="206.32887065170556" stroke="#58595b" stroke-width="1"/>
+        <line x1="150" y1="269.0131090392054" x2="150" y2="286.07275950438" stroke="#58595b" stroke-width="1"/>
+        <line x1="140" y1="192.8697269688861" x2="160" y2="192.8697269688861" stroke="#58595b" stroke-width="1"/>
+        <line x1="140" y1="286.07275950438" x2="160" y2="286.07275950438" stroke="#58595b" stroke-width="1"/>
+      
+        <!-- Box -->
+        <rect x="190" y="176.26972307664371" width="40" height="41.67473888445514" 
+              fill="#ff8200" opacity="0.8" stroke="#58595b"/>
+        
+        <!-- Median -->
+        <line x1="190" y1="200.0452922350277" x2="230" y2="200.0452922350277" 
+              stroke="#58595b" stroke-width="2"/>
+        
+        <!-- Whiskers -->
+        <line x1="210" y1="165.97478453597634" x2="210" y2="176.26972307664371" stroke="#58595b" stroke-width="1"/>
+        <line x1="210" y1="217.94446196109885" x2="210" y2="233.57589521777754" stroke="#58595b" stroke-width="1"/>
+        <line x1="200" y1="165.97478453597634" x2="220" y2="165.97478453597634" stroke="#58595b" stroke-width="1"/>
+        <line x1="200" y1="233.57589521777754" x2="220" y2="233.57589521777754" stroke="#58595b" stroke-width="1"/>
+      
+        <!-- Box -->
+        <rect x="380" y="179.37663285274496" width="40" height="33.23307653027692" 
+              fill="#ff8200" opacity="0.6" stroke="#58595b"/>
+        
+        <!-- Median -->
+        <line x1="380" y1="193.26240701973063" x2="420" y2="193.26240701973063" 
+              stroke="#58595b" stroke-width="2"/>
+        
+        <!-- Whiskers -->
+        <line x1="400" y1="155.41068793606584" x2="400" y2="179.37663285274496" stroke="#58595b" stroke-width="1"/>
+        <line x1="400" y1="212.60970938302188" x2="400" y2="229.5371671327728" stroke="#58595b" stroke-width="1"/>
+        <line x1="390" y1="155.41068793606584" x2="410" y2="155.41068793606584" stroke="#58595b" stroke-width="1"/>
+        <line x1="390" y1="229.5371671327728" x2="410" y2="229.5371671327728" stroke="#58595b" stroke-width="1"/>
+      
+        <!-- Box -->
+        <rect x="440" y="134.57959636544567" width="40" height="43.75056607560359" 
+              fill="#ff8200" opacity="0.8" stroke="#58595b"/>
+        
+        <!-- Median -->
+        <line x1="440" y1="158.73871197396838" x2="480" y2="158.73871197396838" 
+              stroke="#58595b" stroke-width="2"/>
+        
+        <!-- Whiskers -->
+        <line x1="460" y1="117.24000362124414" x2="460" y2="134.57959636544567" stroke="#58595b" stroke-width="1"/>
+        <line x1="460" y1="178.33016244104925" x2="460" y2="179.78710255702444" stroke="#58595b" stroke-width="1"/>
+        <line x1="450" y1="117.24000362124414" x2="470" y2="117.24000362124414" stroke="#58595b" stroke-width="1"/>
+        <line x1="450" y1="179.78710255702444" x2="470" y2="179.78710255702444" stroke="#58595b" stroke-width="1"/>
+      
+        <!-- Box -->
+        <rect x="630" y="178.86646267904345" width="40" height="78.35522871964142" 
+              fill="#ff8200" opacity="0.6" stroke="#58595b"/>
+        
+        <!-- Median -->
+        <line x1="630" y1="217.42195128494564" x2="670" y2="217.42195128494564" 
+              stroke="#58595b" stroke-width="2"/>
+        
+        <!-- Whiskers -->
+        <line x1="650" y1="174.71827559441456" x2="650" y2="178.86646267904345" stroke="#58595b" stroke-width="1"/>
+        <line x1="650" y1="257.22169139868487" x2="650" y2="286.90074930244936" stroke="#58595b" stroke-width="1"/>
+        <line x1="640" y1="174.71827559441456" x2="660" y2="174.71827559441456" stroke="#58595b" stroke-width="1"/>
+        <line x1="640" y1="286.90074930244936" x2="660" y2="286.90074930244936" stroke="#58595b" stroke-width="1"/>
+      
+        <!-- Box -->
+        <rect x="690" y="170.74193831410972" width="40" height="46.11403794747477" 
+              fill="#ff8200" opacity="0.8" stroke="#58595b"/>
+        
+        <!-- Median -->
+        <line x1="690" y1="178.6785196188365" x2="730" y2="178.6785196188365" 
+              stroke="#58595b" stroke-width="2"/>
+        
+        <!-- Whiskers -->
+        <line x1="710" y1="153.2984834657332" x2="710" y2="170.74193831410972" stroke="#58595b" stroke-width="1"/>
+        <line x1="710" y1="216.8559762615845" x2="710" y2="240.00213676047272" stroke="#58595b" stroke-width="1"/>
+        <line x1="700" y1="153.2984834657332" x2="720" y2="153.2984834657332" stroke="#58595b" stroke-width="1"/>
+        <line x1="700" y1="240.00213676047272" x2="720" y2="240.00213676047272" stroke="#58595b" stroke-width="1"/>
+      
+  
+  <!-- Group Labels -->
+  
+    <text x="150" y="480" text-anchor="middle" font-family="Arial" font-size="14">Group 1</text>
+  
+    <text x="400" y="480" text-anchor="middle" font-family="Arial" font-size="14">Group 2</text>
+  
+    <text x="650" y="480" text-anchor="middle" font-family="Arial" font-size="14">Group 3</text>
+  
+  
+  <!-- Category Labels -->
+  <text x="20" y="250" text-anchor="middle" transform="rotate(-90, 20, 250)" 
+        font-family="Arial" font-size="14">Values</text>
+
+</svg>

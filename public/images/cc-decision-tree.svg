@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="700" height="320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="700" height="320" fill="white" />
+  
+  <!-- Top node: Sample Size -->
+  <rect x="270" y="20" width="160" height="50" rx="10" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+  <text x="350" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold">Sample Size?</text>
+  
+  <!-- Lines from Sample Size -->
+  <line x1="310" y1="70" x2="260" y2="100" stroke="#333" stroke-width="2"/> <!-- Left line for Large -->
+  <line x1="390" y1="70" x2="475" y2="100" stroke="#333" stroke-width="2"/> <!-- Right line for Small -->
+  
+  <!-- Large/Small Labels for first decision -->
+  <text x="270" y="85" text-anchor="end" font-family="Arial" font-size="14" fill="#006400" font-weight="bold">Large</text>
+  <text x="440" y="85" text-anchor="start" font-family="Arial" font-size="14" fill="#8B0000" font-weight="bold">Small</text>
+  
+  <!-- Chi-Square node (left) -->
+  <rect x="160" y="100" width="200" height="50" rx="10" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+  <text x="260" y="130" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold">Chi-Square Test</text>
+  
+  <!-- Expected Count Check node (right) -->
+  <rect x="375" y="100" width="250" height="50" rx="10" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+  <text x="500" y="130" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold">Expected Counts ≥ 5?</text>
+  
+  <!-- Lines from Expected Count node -->
+  <line x1="460" y1="150" x2="425" y2="200" stroke="#333" stroke-width="2"/> <!-- Left line for Yes -->
+  <line x1="540" y1="150" x2="575" y2="200" stroke="#333" stroke-width="2"/> <!-- Right line for No -->
+  
+  <!-- Yes/No Labels for second decision -->
+  <text x="435" y="175" text-anchor="end" font-family="Arial" font-size="14" fill="#006400" font-weight="bold">Yes</text>
+  <text x="565" y="175" text-anchor="start" font-family="Arial" font-size="14" fill="#8B0000" font-weight="bold">No</text>
+  
+  <!-- Fisher's Exact node (left-bottom) -->
+  <rect x="350" y="200" width="150" height="50" rx="10" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+  <text x="425" y="230" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold">Fisher's Exact</text>
+  
+  <!-- Simulation node (right-bottom) -->
+  <rect x="525" y="200" width="150" height="50" rx="10" fill="#f2f2f2" stroke="#333" stroke-width="2"/>
+  <text x="600" y="230" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold">Simulation Test</text>
+</svg> 

@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.animate-shake {
+  animation: shake 0.5s;
+  animation-iteration-count: 2;
+}
+
+:root {
+  /* UTK Colors */
+  --utk-orange: #ff8200;
+  --utk-smokey: #58595b;
+  --utk-white: #ffffff;
+  --utk-gray: #e0e0e0;
+  --utk-valley: #00746f;
+  --utk-torch: #e65933;
+  --utk-globe: #006c93;
+  --utk-limestone: #f0f0f0;
+  --utk-river: #517c96;
+  --utk-leconte: #8d2048;
+}
+
+body {
+  color: var(--utk-smokey);
+  background: var(--utk-limestone);
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--utk-limestone);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--utk-smokey);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--utk-orange);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles */
+*:focus {
+  outline: none;
+  @apply ring-2 ring-[#ff8200] ring-opacity-50;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat);
+}
+
+/* Image loading animation */
+.image-loading {
+  @apply animate-pulse bg-[#e0e0e0];
+}
+
+/* Link hover effects */
+a {
+  @apply transition-colors duration-200;
+}
+
+/* Button hover effects */
+button {
+  @apply transition-all duration-200;
+}
+
+/* Card hover effects */
+.hover-card {
+  @apply transition-all duration-200 hover:shadow-lg;
+}
+
+/* UTK-specific styles */
+.utk-button {
+  @apply bg-[#ff8200] text-white px-6 py-3 rounded-lg font-semibold 
+         hover:bg-[#e65933] transition-colors shadow-md;
+}
+
+.utk-button-outline {
+  @apply border-2 border-[#ff8200] text-[#ff8200] px-6 py-3 rounded-lg font-semibold 
+         hover:bg-[#ff8200] hover:text-white transition-colors;
+}
+
+.utk-card {
+  @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-200 
+         border-t-4 border-[#ff8200];
+}
+
+.utk-gradient {
+  @apply bg-gradient-to-r from-[#ff8200] to-[#e65933];
+}
+
+.utk-section {
+  @apply py-16 px-4 sm:px-6 lg:px-8;
+}
+
+/* Checkerboard pattern */
+.utk-checkerboard {
+  background-image: 
+    linear-gradient(45deg, var(--utk-orange) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--utk-orange) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--utk-orange) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--utk-orange) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  opacity: 0.1;
+}

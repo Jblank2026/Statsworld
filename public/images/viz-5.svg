@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="white"/>
+  
+  <!-- Background -->
+  <rect x="50" y="50" width="700" height="400" fill="white" stroke="#58595b" stroke-width="2"/>
+  
+  <!-- Vertical Sections -->
+  
+      <rect x="50" y="50" width="211.76641356125822" height="400" 
+            fill="#ff8200" opacity="0.3" stroke="#58595b"/>
+      <text x="155.8832067806291" y="470" text-anchor="middle" font-family="Arial" font-size="14">
+        Category A
+      </text>
+    
+      <rect x="226.97005623642605" y="50" width="176.97005623642605" height="400" 
+            fill="#ff8200" opacity="0.5" stroke="#58595b"/>
+      <text x="315.4550843546391" y="470" text-anchor="middle" font-family="Arial" font-size="14">
+        Category B
+      </text>
+    
+      <rect x="539.4577309795848" y="50" width="244.7288654897924" height="400" 
+            fill="#ff8200" opacity="0.7" stroke="#58595b"/>
+      <text x="661.822163724481" y="470" text-anchor="middle" font-family="Arial" font-size="14">
+        Category C
+      </text>
+    
+  
+  <!-- Horizontal Sections -->
+  
+      <line x1="50" y1="207.62030636265928" x2="750" y2="207.62030636265928" 
+            stroke="#58595b" stroke-width="1"/>
+      <text x="20" y="207.62030636265928" text-anchor="end" font-family="Arial" font-size="14">
+        Group 1
+      </text>
+    
+      <line x1="50" y1="270.6802966515167" x2="750" y2="270.6802966515167" 
+            stroke="#58595b" stroke-width="1"/>
+      <text x="20" y="270.6802966515167" text-anchor="end" font-family="Arial" font-size="14">
+        Group 2
+      </text>
+    
+
+</svg>

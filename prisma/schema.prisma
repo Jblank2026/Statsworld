@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza19QdVN5TkhOUXdVQjF5MVVzdWpwYW4iLCJhcGlfa2V5IjoiMDFLMllZUjUwN01BTTlSMDlRUFY0UlRSUDIiLCJ0ZW5hbnRfaWQiOiI1Zjg3ZTliNThmMjkwNTU0NWE1M2YwM2EzNGRjM2UzOTkyNTc1ODljYjNmZTlmYzgxNjZiMWIyN2VkNDg3MjY5IiwiaW50ZXJuYWxfc2VjcmV0IjoiNjNmNTc0MTgtNzQwZS00YzEyLTg0ZjUtMzFhZTVmZjhhN2QyIn0.VZlbtB2_ZiKzfFSdVn1NS8DO8ExRRqPeaTYcQRFuJs8"
+}
+
+// Simple student tracking models
+model Student {
+  id        String   @id @default(cuid())
+  netId     String   @unique  // UTK NetID (e.g., "jsmith42")
+  name      String?  // Optional student name
+  email     String?  // Optional UTK email
+  
+  // Track visits and interactions
+  visits    StudentVisit[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([netId])
+}
+
+// Track when students visit JakesWorld
+model StudentVisit {
+  id        String   @id @default(cuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  
+  // Visit details
+  pagePath  String   // What page they visited (e.g., "/chapters/4/interpreting-summary-output")
+  pageTitle String?  // Title of the page
+  action    String   // What they did ("login", "page_view", "click", "explanation_view")
+  element   String?  // What they clicked on (e.g., "intercept", "slope")
+  value     String?  // Any associated value
+  
+  // Session info
+  sessionId String?  // Browser session ID
+  userAgent String?  // Browser info
+  
+  visitedAt DateTime @default(now())
+  
+  @@index([studentId, visitedAt])
+  @@index([pagePath])
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="white"/>
+  
+  <!-- Grid -->
+  
+    <line x1="50" y1="50" x2="750" y2="50" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="90" x2="750" y2="90" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="130" x2="750" y2="130" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="170" x2="750" y2="170" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="210" x2="750" y2="210" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="250" x2="750" y2="250" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="290" x2="750" y2="290" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="330" x2="750" y2="330" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="370" x2="750" y2="370" 
+          stroke="#eee" stroke-width="1"/>
+  
+    <line x1="50" y1="410" x2="750" y2="410" 
+          stroke="#eee" stroke-width="1"/>
+  
+  
+  <!-- Axes -->
+  <line x1="50" y1="450" x2="750" y2="450" stroke="#58595b" stroke-width="2"/>
+  <line x1="50" y1="50" x2="50" y2="450" stroke="#58595b" stroke-width="2"/>
+  
+  <!-- Bars -->
+  <rect x="80" y="288.3103976773009" width="50" height="161.68960232269907" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="150" y="329.4743175328005" width="50" height="120.52568246719947" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="220" y="154.771005063632" width="50" height="295.228994936368" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="290" y="233.3047728067915" width="50" height="216.6952271932085" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="360" y="101.93456544358071" width="50" height="348.0654345564193" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="430" y="205.7451664961815" width="50" height="244.2548335038185" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="500" y="386.2499482747289" width="50" height="63.750051725271085" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="570" y="360.13784830186955" width="50" height="89.86215169813042" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="640" y="265.92830328602906" width="50" height="184.07169671397094" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/><rect x="710" y="139.08902796214323" width="50" height="310.91097203785677" 
+                  fill="#ff8200" opacity="0.7" stroke="#58595b"/>
+  
+  <!-- Labels -->
+  <text x="400" y="490" text-anchor="middle" font-family="Arial" font-size="14">Values</text>
+  <text x="20" y="250" text-anchor="middle" transform="rotate(-90, 20, 250)" 
+        font-family="Arial" font-size="14">Frequency</text>
+
+</svg>

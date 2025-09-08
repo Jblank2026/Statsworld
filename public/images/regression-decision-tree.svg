@@ -1,0 +1,50 @@
+<svg width="700" height="380" xmlns="http://www.w3.org/2000/svg">
+  <!-- Start Node -->
+  <rect x="180" y="10" width="200" height="50" rx="10" fill="#d0e3f5" stroke="#90b2d6" stroke-width="2"/>
+  <text x="280" y="37" font-family="Arial" font-size="11.5" text-anchor="middle" fill="#333">Check p-values of assumption tests</text>
+  
+  <!-- Decision Lines from Start Node -->
+  <line x1="280" y1="60" x2="280" y2="80" stroke="#777" stroke-width="2"/>
+  <line x1="280" y1="80" x2="105" y2="80" stroke="#777" stroke-width="2"/>
+  <line x1="280" y1="80" x2="455" y2="80" stroke="#777" stroke-width="2"/>
+  <line x1="105" y1="80" x2="105" y2="100" stroke="#777" stroke-width="2"/>
+  <line x1="455" y1="80" x2="455" y2="100" stroke="#777" stroke-width="2"/>
+  
+  <!-- Decision Path Labels -->
+  <text x="190" y="75" font-family="Arial" font-size="11" text-anchor="middle" fill="#555">All p-values ≥ 5%</text>
+  <text x="370" y="75" font-family="Arial" font-size="11" text-anchor="middle" fill="#555">Some p-values &lt; 5%</text>
+  
+  <!-- Second Level Nodes -->
+  <rect x="5" y="100" width="200" height="50" rx="10" fill="#c7f0c7" stroke="#97d097" stroke-width="2"/>
+  <text x="105" y="130" font-family="Arial" font-size="13" text-anchor="middle" fill="#333">Model is OK to use</text>
+  
+  <rect x="355" y="100" width="200" height="50" rx="10" fill="#fff0c7" stroke="#e0c797" stroke-width="2"/>
+  <text x="455" y="130" font-family="Arial" font-size="13" text-anchor="middle" fill="#333">Check sample size (n)</text>
+  
+  <!-- Decision Lines from Sample Size Node -->
+  <line x1="455" y1="150" x2="455" y2="170" stroke="#777" stroke-width="2"/>
+  <line x1="455" y1="170" x2="330" y2="170" stroke="#777" stroke-width="2"/>
+  <line x1="455" y1="170" x2="580" y2="170" stroke="#777" stroke-width="2"/>
+  <line x1="330" y1="170" x2="330" y2="190" stroke="#777" stroke-width="2"/>
+  <line x1="580" y1="170" x2="580" y2="190" stroke="#777" stroke-width="2"/>
+  
+  <!-- Sample Size Path Labels -->
+  <text x="390" y="165" font-family="Arial" font-size="11" text-anchor="middle" fill="#555">n &lt; 25</text>
+  <text x="520" y="165" font-family="Arial" font-size="11" text-anchor="middle" fill="#555">n ≥ 25</text>
+  
+  <!-- Third Level Nodes -->
+  <rect x="230" y="190" width="200" height="50" rx="10" fill="#f5c7c7" stroke="#d69090" stroke-width="2"/>
+  <text x="330" y="220" font-family="Arial" font-size="13" text-anchor="middle" fill="#333">Stop: Model not usable</text>
+  
+  <rect x="480" y="190" width="200" height="60" rx="10" fill="#fff0c7" stroke="#e0c797" stroke-width="2"/>
+  <text x="580" y="215" font-family="Arial" font-size="13" text-anchor="middle" fill="#333">Check diagnostic plots</text>
+  <text x="580" y="235" font-family="Arial" font-size="13" text-anchor="middle" fill="#333">for severity</text>
+  
+  <!-- Decision Line from Diagnostic Plots Node -->
+  <line x1="580" y1="250" x2="580" y2="280" stroke="#777" stroke-width="2"/>
+  
+  <!-- Final Node -->
+  <rect x="480" y="280" width="200" height="60" rx="10" fill="#c7f0c7" stroke="#97d097" stroke-width="2"/>
+  <text x="580" y="305" font-family="Arial" font-size="13" text-anchor="middle" fill="#333">If violations not severe,</text>
+  <text x="580" y="325" font-family="Arial" font-size="13" text-anchor="middle" fill="#333">model is usable</text>
+</svg> 
