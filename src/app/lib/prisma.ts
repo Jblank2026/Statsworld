@@ -1,18 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+// DATABASE COMPLETELY DISABLED - NO PRISMA CLIENT
+// import { PrismaClient } from '@prisma/client'
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined
-}
+// No database connection - all tracking disabled
+export const prisma = null;
 
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({
-  log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-})
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
-
-// Ensure connection is established
-if (process.env.NODE_ENV === 'production') {
-  prisma.$connect().catch((err) => {
-    console.error('Failed to connect to database:', err)
-  })
-}
+console.log('🚫 Database tracking disabled - no data collection')

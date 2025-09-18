@@ -11,8 +11,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "JakesWorld | Supplemental Regression Modeling Tool",
-  description: "Your go-to supplemental learning tool for excelling in regression analysis at UTK.",
+  title: "Jake's World | The Statistics Tool",
+  description: "Your comprehensive statistics learning platform for mastering data analysis, visualizations, and statistical modeling.",
 };
 
 function Footer() {
@@ -20,7 +20,7 @@ function Footer() {
     <footer className="bg-[#58595b] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col items-center">
-          <div className="text-2xl font-bold text-[#ff8200] mb-4">JakesWorld</div>
+          <div className="text-2xl font-bold text-[#ff8200] mb-4">Jake's World</div>
           <div className="flex space-x-6 mb-8">
             <a
               href="https://linkedin.com"
@@ -32,7 +32,7 @@ function Footer() {
             </a>
           </div>
           <div className="text-sm text-gray-300">
-            © {new Date().getFullYear()} JakesWorld. All rights reserved.
+            © {new Date().getFullYear()} Jake's World. All rights reserved.
           </div>
           <div className="text-sm text-gray-300 mt-2">
             Proudly affiliated with the University of Tennessee, Knoxville

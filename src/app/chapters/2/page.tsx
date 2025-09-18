@@ -1,44 +1,26 @@
 "use client";
 import Link from 'next/link';
 
-export default function Associations() {
+export default function UnivariateDisplays() {
   const topics = [
     {
-      title: "Visual Arsenal",
-      description: "Explore your complete toolkit of data visualization types and when to use them.",
-      href: "/chapters/2/visualizations",
+      title: "Categorical Displays",
+      description: "Master bar charts, Pareto charts, pie charts, and frequency tables. Learn when to use each visualization type and how to create compelling displays for categorical data.",
+      href: "/chapters/2/categorical-displays",
       icon: "📊"
     },
     {
-      title: "Association Types",
-      description: "Learn about different types of associations between variables.",
-      href: "/chapters/2/association-types",
-      icon: "🔗"
-    },
-    {
-      title: "Quantitative-Quantitative",
-      description: "Explore relationships between two quantitative variables.",
-      href: "/chapters/2/quantitative-quantitative",
+      title: "Quantitative Displays", 
+      description: "Explore histograms, stem-and-leaf plots, and dot plots. Understand how bin width affects histogram interpretation and learn to reveal data patterns effectively.",
+      href: "/chapters/2/quantitative-displays",
       icon: "📈"
     },
     {
-      title: "Quantitative-Categorical",
-      description: "Explore relationships between a quantitative and a categorical variable.",
-      href: "/chapters/2/quantitative-categorical",
-      icon: "📊"
-    },
-    {
-      title: "Categorical-Categorical",
-      description: "Explore relationships between two categorical variables.",
-      href: "/chapters/2/categorical-categorical",
-      icon: "🟦"
-    },
-    {
-      title: "Visual ID Challenge",
-      description: "Test your ability to identify different types of visualizations in an interactive game.",
-      href: "/chapters/2/visual-id",
+      title: "Center & Spread",
+      description: "Master measures of center (mean, median) and spread (range, IQR, standard deviation). Understand how skewness affects these measures and when to use each.",
+      href: "/chapters/2/center-spread",
       icon: "🎯"
-    }
+    },
   ];
 
   return (
@@ -55,13 +37,51 @@ export default function Associations() {
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
           <div className="flex items-start gap-4">
             <div className="bg-[#e7e7e7] rounded-lg p-4">
-              <span role="img" aria-label="detective" className="text-4xl">🕵️‍♂️</span>
+              <span role="img" aria-label="univariate displays" className="text-4xl">📈</span>
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-[#58595b]">Associations</h1>
+              <h1 className="text-4xl font-bold text-[#58595b]">Univariate Displays</h1>
               <p className="text-xl text-gray-600 mt-2">
-                Explore relationships between variables through engaging examples and interactive visualizations.
+                Master the art of displaying and describing single variables! Learn to create compelling visualizations and describe distributions with precision.
               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Key Concepts Overview */}
+        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-[#58595b] mb-6">📋 What You'll Learn</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border-l-4 border-[#ff8200] pl-6">
+              <h3 className="text-lg font-semibold text-[#58595b] mb-2">📊 Categorical Data</h3>
+              <ul className="space-y-1 text-gray-600 text-sm">
+                <li>• Bar charts and variations</li>
+                <li>• Pie charts and when to avoid them</li>
+                <li>• Frequency and relative frequency tables</li>
+                <li>• Pareto charts for prioritization</li>
+              </ul>
+            </div>
+
+            <div className="border-l-4 border-blue-500 pl-6">
+              <h3 className="text-lg font-semibold text-[#58595b] mb-2">📈 Quantitative Data</h3>
+              <ul className="space-y-1 text-gray-600 text-sm">
+                <li>• Histograms and bin width effects</li>
+                <li>• Stem-and-leaf plots</li>
+                <li>• Dot plots for smaller datasets</li>
+                <li>• Choosing the right display</li>
+              </ul>
+            </div>
+
+
+            <div className="border-l-4 border-purple-500 pl-6">
+              <h3 className="text-lg font-semibold text-[#58595b] mb-2">🎯 Center & Spread</h3>
+              <ul className="space-y-1 text-gray-600 text-sm">
+                <li>• Mean vs median comparisons</li>
+                <li>• Range, IQR, and standard deviation</li>
+                <li>• How skewness affects measures</li>
+                <li>• Percentiles and their interpretation</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -89,12 +109,13 @@ export default function Associations() {
 
         {/* Fun Fact */}
         <div className="bg-gray-50 p-6 rounded-lg mt-12">
-          <h3 className="text-lg font-bold text-[#58595b] mb-2">💡 Fun Fact</h3>
-          <p className="text-gray-600 italic">
-            Did you know? The same statistical techniques we use to analyze customer behavior can reveal why some TikTok videos go viral!
+          <h3 className="text-lg font-semibold text-[#58595b] mb-2">💡 Data Visualization Insight</h3>
+          <p className="text-gray-600">
+            The shape of a distribution can tell you more about your data than any single number! A histogram can reveal hidden patterns, 
+            outliers, and data quality issues that summary statistics might miss. As the saying goes: "A picture is worth a thousand data points!" 📊
           </p>
         </div>
       </div>
     </main>
   );
-} 
+}

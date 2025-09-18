@@ -17,36 +17,36 @@ const REACTION_GIFS = [
   "/images/pug.gif"
 ];
 
-const DAD_JOKES = [
-  "Why don't scientists trust atoms? Because they make up everything!",
-  "I told my wife she was drawing her eyebrows too high. She looked surprised.",
-  "Why don't skeletons fight each other? They don't have the guts.",
-  "What do you call a fake noodle? An impasta!",
-  "How do you organize a space party? You planet!",
-  "Why did the scarecrow win an award? He was outstanding in his field!",
-  "What do you call a dinosaur that crashes his car? Tyrannosaurus Wrecks!",
-  "Why don't eggs tell jokes? They'd crack each other up!",
-  "What's the best thing about Switzerland? I don't know, but the flag is a big plus.",
-  "Why did the math book look so sad? Because it had too many problems!",
-  "What do you call a bear with no teeth? A gummy bear!",
-  "Why don't scientists trust stairs? Because they're always up to something!",
-  "What did the ocean say to the beach? Nothing, it just waved.",
-  "Why don't programmers like nature? It has too many bugs.",
-  "What's orange and sounds like a parrot? A carrot!",
-  "Why did the bicycle fall over? Because it was two-tired!",
-  "What do you call a sleeping bull? A bulldozer!",
-  "Why don't ghosts lie? You can see right through them.",
-  "What do you call a group of musical whales? An orca-stra.",
-  "Why did the music teacher go to jail? She got caught with sharp notes.",
-  "What's a sheep's favorite sports game? Baaa-seball."
+const STATS_JOKES = [
+  "Why don't statistics ever lie? Because they make up everything!",
+  "What do you call a statistician who's always happy? Normally distributed!",
+  "Why did the data point break up with the trend line? It felt like their relationship wasn't significant!",
+  "What's a statistician's favorite type of music? Heavy correlation!",
+  "Why don't data scientists trust stairs? Because they're always plotting something!",
+  "What did the histogram say to the bar chart? You're really raising the bar!",
+  "Why was the standard deviation feeling sad? It felt so far from the mean!",
+  "What do you call a sleeping statistics professor? A z-score!",
+  "Why did the p-value go to therapy? It had confidence interval issues!",
+  "What's a data analyst's favorite dessert? Pie charts!",
+  "Why don't statisticians play hide and seek? Because good luck hiding from regression analysis!",
+  "What did the scatter plot say to the correlation coefficient? You complete me!",
+  "Why was the sample size always invited to parties? It made everything more significant!",
+  "What do you call a bear that works with data? A pandas bear!",
+  "Why did the chi-square test go to the gym? To work on its degrees of freedom!",
+  "What's a statistician's favorite game? Probability poker!",
+  "Why don't normal distributions ever get lost? They always know where the center is!",
+  "What did the outlier say to the dataset? I'm just trying to stand out!",
+  "Why was the mean always so popular? It was the center of attention!",
+  "What do you call a group of singing data points? A histogram choir!",
+  "Why did the researcher love coffee? It helped with their daily grind... of data!"
 ];
 
 export default function Home() {
-  const [joke, setJoke] = useState(DAD_JOKES[0]);
+  const [joke, setJoke] = useState(STATS_JOKES[0]);
   const [gif, setGif] = useState(REACTION_GIFS[0]);
 
   const refreshJoke = () => {
-    setJoke(DAD_JOKES[Math.floor(Math.random() * DAD_JOKES.length)]);
+    setJoke(STATS_JOKES[Math.floor(Math.random() * STATS_JOKES.length)]);
     setGif(REACTION_GIFS[Math.floor(Math.random() * REACTION_GIFS.length)]);
   };
 
@@ -61,8 +61,8 @@ export default function Home() {
       <div className="relative py-24 sm:py-32">
         <div className="absolute inset-0">
           <Image
-            src="/images/data.jpeg"
-            alt="Data Analytics Background"
+            src="/images/background.jpg"
+            alt="Statistics Background"
             fill
             className="object-cover"
             priority
@@ -72,11 +72,11 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-8">
-              JakesWorld | Supplemental Regression Modeling Tool
+              Jake's World | The Statistics Tool
             </h1>
             <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto mb-4">
-              Your go-to test preparation resource for BAS 320! Master regression modeling through interactive learning experiences, 
-              visual demonstrations, and hands-on practice.
+              Your comprehensive statistics learning platform! Master data analysis, visualizations, associations, 
+              and statistical modeling through interactive experiences and hands-on practice.
             </p>
             <div className="mt-10 flex gap-x-6 justify-center">
               <Link
@@ -96,51 +96,48 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">Quick Access</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link 
+              href="/chapters/2/association-types"
+              className="utk-card p-6 text-center hover:scale-105 transition-transform"
+            >
+              <div className="text-4xl mb-4">🔗</div>
+              <h3 className="text-xl font-semibold mb-2">Association Types</h3>
+              <p className="text-gray-600">Explore relationships between variables!</p>
+            </Link>
+
+            <Link 
+              href="/chapters/2/visualizations"
+              className="utk-card p-6 text-center hover:scale-105 transition-transform"
+            >
+              <div className="text-4xl mb-4">📊</div>
+              <h3 className="text-xl font-semibold mb-2">Data Visualizations</h3>
+              <p className="text-gray-600">Master charts, graphs, and plots!</p>
+            </Link>
+
+            <Link 
+              href="/chapters/3"
+              className="utk-card p-6 text-center hover:scale-105 transition-transform"
+            >
+              <div className="text-4xl mb-4">💻</div>
+              <h3 className="text-xl font-semibold mb-2">R Programming</h3>
+              <p className="text-gray-600">Learn statistical computing!</p>
+            </Link>
+
+            <Link 
               href="/chapters/2/visual-id"
               className="utk-card p-6 text-center hover:scale-105 transition-transform"
             >
               <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold mb-2">Visual ID Challenge</h3>
-              <p className="text-gray-600">Test your pattern recognition skills!</p>
-            </Link>
-
-            <Link 
-              href="/pdfs/R-studio help sheet.pdf"
-              className="utk-card p-6 text-center hover:scale-105 transition-transform"
-              target="_blank"
-            >
-              <div className="text-4xl mb-4">📝</div>
-              <h3 className="text-xl font-semibold mb-2">R Coding Cheat Sheet</h3>
-              <p className="text-gray-600">Your quick guide to R success!</p>
-            </Link>
-
-            <a 
-              href="https://www.youtube.com/@Stat201atUTK"
-              className="utk-card p-6 text-center hover:scale-105 transition-transform"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="text-4xl mb-4">📺</div>
-              <h3 className="text-xl font-semibold mb-2">STAT 201 YouTube</h3>
-              <p className="text-gray-600">Watch and learn with us!</p>
-            </a>
-
-            <Link 
-              href="/chapters/1"
-              className="utk-card p-6 text-center hover:scale-105 transition-transform"
-            >
-              <div className="text-4xl mb-4">🚀</div>
-              <h3 className="text-xl font-semibold mb-2">Start Chapter 1</h3>
-              <p className="text-gray-600">Begin your stats adventure!</p>
+              <h3 className="text-xl font-semibold mb-2">Pattern Recognition</h3>
+              <p className="text-gray-600">Test your visual analysis skills!</p>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Daily Dad Joke */}
+      {/* Daily Statistics Joke */}
       <section className="utk-section bg-[#f0f0f0]">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Daily Dad Joke</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Daily Statistics Humor</h2>
           <div className="max-w-3xl mx-auto">
             <div className="utk-card p-8 text-center">
               <div className="relative w-64 h-64 mx-auto mb-8">
@@ -160,7 +157,7 @@ export default function Home() {
                 onClick={refreshJoke}
                 className="bg-[#ff8200] text-white px-6 py-2 rounded-lg hover:bg-[#e65933] transition-colors mt-4"
               >
-                Get Another Joke
+                Get Another Stats Joke
               </button>
             </div>
           </div>
@@ -170,15 +167,15 @@ export default function Home() {
       {/* Call to Action */}
       <section className="utk-section utk-gradient text-white">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Excel in Regression?</h2>
+          <h2 className="text-3xl font-bold mb-6">Ready to Master Statistics?</h2>
           <p className="text-xl mb-8">
-            Join our learning community and master regression modeling through 
-            interactive games and comprehensive resources.
+            Join our learning community and explore the fascinating world of statistics through 
+            interactive visualizations, data analysis challenges, and comprehensive tutorials.
           </p>
           <Link href="/chapters" className="inline-block bg-white text-[#ff8200] px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-            Get Started Now
+            Start Your Statistical Journey
           </Link>
-    </div>
+        </div>
       </section>
     </main>
   );

@@ -1,15 +1,12 @@
 "use client";
 
-import { useStudentTracking } from '../hooks/useStudentTracking';
+// PAGE TRACKING COMPLETELY DISABLED
+// This component does nothing - no data collection
 
-// This component automatically tracks page visits when mounted
-// No visual output - just tracks when students visit pages
 export default function SimplePageTracker() {
-  // The useStudentTracking hook automatically handles page visit tracking
-  // when the pathname changes, so this component just needs to exist
+  // No tracking functionality - component disabled
+  console.log('🚫 Page tracking disabled');
   
-  useStudentTracking(); // This triggers the page tracking
-  
-  // Component renders nothing visible
+  // Component renders nothing and does nothing
   return null;
 }
