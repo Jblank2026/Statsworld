@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Navigation from "./components/Navigation";
 import { Analytics } from "@vercel/analytics/react";
-import NetIdPrompt from "./components/NetIdPrompt";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -56,7 +55,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <NetIdPrompt />
         <Analytics />
       </body>
     </html>
