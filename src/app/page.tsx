@@ -96,39 +96,39 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">Quick Access</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link 
-              href="/chapters/2/association-types"
-              className="utk-card p-6 text-center hover:scale-105 transition-transform"
-            >
-              <div className="text-4xl mb-4">🔗</div>
-              <h3 className="text-xl font-semibold mb-2">Association Types</h3>
-              <p className="text-gray-600">Explore relationships between variables!</p>
-            </Link>
-
-            <Link 
-              href="/chapters/2/visualizations"
-              className="utk-card p-6 text-center hover:scale-105 transition-transform"
-            >
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-semibold mb-2">Data Visualizations</h3>
-              <p className="text-gray-600">Master charts, graphs, and plots!</p>
-            </Link>
-
-            <Link 
-              href="/chapters/3"
-              className="utk-card p-6 text-center hover:scale-105 transition-transform"
-            >
-              <div className="text-4xl mb-4">💻</div>
-              <h3 className="text-xl font-semibold mb-2">R Programming</h3>
-              <p className="text-gray-600">Learn statistical computing!</p>
-            </Link>
-
-            <Link 
-              href="/chapters/2/visual-id"
+              href="/chapters/1"
               className="utk-card p-6 text-center hover:scale-105 transition-transform"
             >
               <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold mb-2">Pattern Recognition</h3>
-              <p className="text-gray-600">Test your visual analysis skills!</p>
+              <h3 className="text-xl font-semibold mb-2">Statistics Basics</h3>
+              <p className="text-gray-600">Start your statistical journey!</p>
+            </Link>
+
+            <Link 
+              href="/chapters/6/scatterplots"
+              className="utk-card p-6 text-center hover:scale-105 transition-transform"
+            >
+              <div className="text-4xl mb-4">📈</div>
+              <h3 className="text-xl font-semibold mb-2">Correlation & Scatterplots</h3>
+              <p className="text-gray-600">Discover relationships in data!</p>
+            </Link>
+
+            <Link 
+              href="/chapters/5/z-scores"
+              className="utk-card p-6 text-center hover:scale-105 transition-transform"
+            >
+              <div className="text-4xl mb-4">🔔</div>
+              <h3 className="text-xl font-semibold mb-2">Z-Scores & Normal Model</h3>
+              <p className="text-gray-600">Master the bell curve!</p>
+            </Link>
+
+            <Link 
+              href="/resources"
+              className="utk-card p-6 text-center hover:scale-105 transition-transform"
+            >
+              <div className="text-4xl mb-4">📚</div>
+              <h3 className="text-xl font-semibold mb-2">Learning Resources</h3>
+              <p className="text-gray-600">YouTube videos & more!</p>
             </Link>
           </div>
         </div>

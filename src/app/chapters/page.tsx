@@ -128,7 +128,7 @@ const chapters = [
     ],
     emoji: "🔍",
     funFact: "Did you know? The same statistical techniques we use to analyze customer behavior can reveal why some TikTok videos go viral!",
-    locked: false,
+    locked: true,
     slug: "/chapters/7"
   },
   {
@@ -143,7 +143,7 @@ const chapters = [
     ],
     emoji: "📊",
     funFact: "Did you know? R was created by statisticians and named after their first initials (Ross Ihaka and Robert Gentleman)!",
-    locked: false,
+    locked: true,
     slug: "/chapters/8"
   },
   {
@@ -160,7 +160,7 @@ const chapters = [
     ],
     emoji: "🚀",
     funFact: "Did you know? The same regression techniques that predict pizza delivery times are used by NASA for rocket trajectories! 🍕🚀",
-    locked: false,
+    locked: true,
     slug: "/chapters/9"
   },
   {
@@ -177,7 +177,7 @@ const chapters = [
     ],
     emoji: "📊",
     funFact: "Did you know? Netflix uses multiple regression to predict your next favorite show! That's how it knows about your midnight habits! 🐱",
-    locked: false,
+    locked: true,
     slug: "/chapters/10"
   },
   {
@@ -194,7 +194,7 @@ const chapters = [
     ],
     emoji: "🎭",
     funFact: "Did you know? Website success varies by both day and location - proving that timing and place make the perfect match! 🎯",
-    locked: false,
+    locked: true,
     slug: "/chapters/11"
   },
   {
@@ -211,7 +211,7 @@ const chapters = [
     ],
     emoji: "🎲",
     funFact: "Did you know? The same models that predict ad clicks help doctors make medical decisions! Start with customers first! 🧠",
-    locked: false,
+    locked: true,
     slug: "/chapters/12"
   },
   {
@@ -228,7 +228,7 @@ const chapters = [
     ],
     emoji: "🏗️",
     funFact: "Did you know? Netflix tests thousands of model variations to recommend your next binge-watch - it's like having a personal statistician! 🎬",
-    locked: false,
+    locked: true,
     slug: "/chapters/13"
   }
 ];
@@ -260,7 +260,7 @@ export default function Chapters() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {chapters.map((chapter) => (
+            {chapters.filter(chapter => chapter.number <= 6).map((chapter) => (
               <div 
                 key={chapter.number}
                 className="group"

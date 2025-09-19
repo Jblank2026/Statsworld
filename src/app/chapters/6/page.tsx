@@ -4,34 +4,22 @@ import Link from 'next/link';
 export default function Correlation() {
   const topics = [
     {
-      title: "Scatterplots",
-      description: "Master the foundation of correlation analysis! Learn to create and interpret scatterplots that reveal relationships between quantitative variables and identify patterns at a glance.",
+      title: "Scatterplots: Direction, Form & Strength",
+      description: "Master the complete foundation of correlation analysis! Learn to create and interpret scatterplots, identify direction, form, and strength of relationships with visual scatter plot examples.",
       href: "/chapters/6/scatterplots",
-      icon: "🎯"
+      icon: "📈"
     },
     {
-      title: "Direction, Form & Strength", 
-      description: "Develop your pattern recognition skills! Learn to identify positive/negative direction, linear/curved form, and weak/strong relationships in bivariate data.",
-      href: "/chapters/6/direction-form-strength",
-      icon: "🧭"
-    },
-    {
-      title: "Correlation Coefficient",
-      description: "Unlock the power of 'r'! Master the correlation coefficient calculation, understand what values from -1 to +1 really mean, and learn when correlation is meaningful.",
+      title: "The Correlation Coefficient (r)",
+      description: "Unlock the power of 'r'! Master what correlation coefficients from -1 to +1 really mean, interpret strength and direction, and understand the mathematical properties of correlation.",
       href: "/chapters/6/correlation-coefficient",
       icon: "📊"
     },
     {
-      title: "Correlation vs Causation",
-      description: "Navigate the most important distinction in statistics! Learn why correlation doesn't imply causation, identify confounding variables, and avoid common logical pitfalls.",
-      href: "/chapters/6/correlation-causation",
+      title: "Correlation Conditions & Limitations",
+      description: "Learn when correlation works and when it fails! Master the conditions needed for meaningful correlation analysis, identify common pitfalls, and avoid misleading interpretations.",
+      href: "/chapters/6/correlation-conditions",
       icon: "⚠️"
-    },
-    {
-      title: "Correlation Detective Game",
-      description: "Become a correlation expert! Analyze real datasets, calculate correlation coefficients, and solve challenging scenarios that test your complete understanding of relationships.",
-      href: "/chapters/6/correlation-game",
-      icon: "🕵️"
     }
   ];
 
@@ -145,89 +133,6 @@ export default function Correlation() {
           </div>
         </div>
 
-        {/* Correlation Strength Guide */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-[#58595b] mb-6">📏 Understanding Correlation Strength</h2>
-          
-          <div className="space-y-6">
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-              <div className="flex items-start gap-3">
-                <span className="text-3xl">📊</span>
-                <div>
-                  <h3 className="font-bold text-yellow-700 mb-2">The r Value Decoder</h3>
-                  <p className="text-yellow-600">
-                    The correlation coefficient r tells you both direction (sign) and strength (magnitude). 
-                    But remember: even "weak" correlations can be meaningful in large datasets, and "strong" 
-                    correlations don't guarantee practical importance!
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <div className="border border-red-200 rounded-lg p-3 text-center">
-                <h4 className="font-bold text-red-700 mb-1">Perfect Negative</h4>
-                <div className="text-2xl font-bold text-red-600">r = -1</div>
-                <p className="text-xs text-red-500">Exact linear relationship, opposite direction</p>
-              </div>
-
-              <div className="border border-orange-200 rounded-lg p-3 text-center">
-                <h4 className="font-bold text-orange-700 mb-1">Strong Negative</h4>
-                <div className="text-2xl font-bold text-orange-600">r ≈ -0.8</div>
-                <p className="text-xs text-orange-500">Clear negative pattern with some scatter</p>
-              </div>
-
-              <div className="border border-gray-200 rounded-lg p-3 text-center">
-                <h4 className="font-bold text-gray-700 mb-1">No Correlation</h4>
-                <div className="text-2xl font-bold text-gray-600">r ≈ 0</div>
-                <p className="text-xs text-gray-500">No linear relationship visible</p>
-              </div>
-
-              <div className="border border-blue-200 rounded-lg p-3 text-center">
-                <h4 className="font-bold text-blue-700 mb-1">Strong Positive</h4>
-                <div className="text-2xl font-bold text-blue-600">r ≈ +0.8</div>
-                <p className="text-xs text-blue-500">Clear positive pattern with some scatter</p>
-              </div>
-
-              <div className="border border-green-200 rounded-lg p-3 text-center">
-                <h4 className="font-bold text-green-700 mb-1">Perfect Positive</h4>
-                <div className="text-2xl font-bold text-green-600">r = +1</div>
-                <p className="text-xs text-green-500">Exact linear relationship, same direction</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Famous Correlation Warnings */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-[#58595b] mb-6">⚠️ Correlation Pitfalls to Avoid</h2>
-          
-          <div className="space-y-4">
-            <div className="flex items-start gap-3 p-4 bg-red-50 rounded-lg">
-              <span className="text-2xl">🍦</span>
-              <div>
-                <h3 className="font-semibold text-[#58595b]">Ice Cream & Drowning</h3>
-                <p className="text-gray-600 text-sm">Ice cream sales correlate with drowning incidents. Does ice cream cause drowning? No! Hot weather causes both - a classic confounding variable example.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-4 bg-yellow-50 rounded-lg">
-              <span className="text-2xl">📺</span>
-              <div>
-                <h3 className="font-semibold text-[#58595b]">Internet Users & Lemon Imports</h3>
-                <p className="text-gray-600 text-sm">These show 99.8% correlation! Both trends happen to increase over time, creating spurious correlation. Always question whether relationships make logical sense.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-              <span className="text-2xl">🎓</span>
-              <div>
-                <h3 className="font-semibold text-[#58595b]">Education & Income</h3>
-                <p className="text-gray-600 text-sm">These correlate strongly, but does education cause higher income, or do wealthy families afford more education? Correlation suggests relationship but can't prove direction.</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Topics Grid */}
         <div className="grid grid-cols-1 gap-6">

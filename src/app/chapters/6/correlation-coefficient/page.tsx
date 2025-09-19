@@ -1,35 +1,31 @@
 "use client";
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import confetti from 'canvas-confetti';
 
 interface CorrelationExample {
   name: string;
   context: string;
-  data: Array<{ x: number; y: number }>;
-  correlationValue: number;
+  r: number;
   interpretation: string;
-  strengthDescription: string;
+  strength: string;
+  direction: string;
   practicalMeaning: string;
-  visualDescription: string;
+  data: Array<{ x: number; y: number }>;
 }
 
 interface Challenge {
   id: number;
   scenario: string;
-  correlationValue: number;
-  questionType: 'interpretation' | 'strength' | 'comparison' | 'application';
+  r: number;
   question: string;
   options: string[];
   correctAnswer: string;
   explanation: string;
-  skillFocus: string;
 }
 
 export default function CorrelationCoefficient() {
   const [selectedExample, setSelectedExample] = useState(0);
-  const [calculatorDataX, setCalculatorDataX] = useState('1,2,3,4,5');
-  const [calculatorDataY, setCalculatorDataY] = useState('2,4,6,8,10');
   const [gameStarted, setGameStarted] = useState(false);
   const [currentChallenge, setCurrentChallenge] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
@@ -39,222 +35,165 @@ export default function CorrelationCoefficient() {
 
   const examples: CorrelationExample[] = [
     {
-      name: "Perfect Positive Correlation",
-      context: "Hours studied vs points gained on exam (idealized)",
+      name: "Height vs Weight",
+      context: "Relationship between height and weight in adults",
+      r: 0.85,
+      interpretation: "Strong positive correlation",
+      strength: "Strong",
+      direction: "Positive",
+      practicalMeaning: "As height increases, weight tends to increase significantly. This makes biological sense!",
       data: [
-        { x: 1, y: 2 }, { x: 2, y: 4 }, { x: 3, y: 6 }, { x: 4, y: 8 },
-        { x: 5, y: 10 }, { x: 6, y: 12 }, { x: 7, y: 14 }, { x: 8, y: 16 }
-      ],
-      correlationValue: 1.0,
-      interpretation: "Perfect positive linear relationship - every increase in study time produces an exact, predictable increase in exam points.",
-      strengthDescription: "Perfect (r = +1.0): Strongest possible positive relationship",
-      practicalMeaning: "In this idealized scenario, study time perfectly predicts exam improvement with zero variation.",
-      visualDescription: "All points lie exactly on a straight upward-sloping line with no scatter whatsoever."
+        { x: 65, y: 140 }, { x: 68, y: 160 }, { x: 70, y: 170 }, { x: 72, y: 190 }, { x: 75, y: 210 }
+      ]
     },
     {
-      name: "Strong Positive Correlation",
-      context: "Height vs weight in healthy adults",
+      name: "Study Hours vs Test Scores",
+      context: "Hours studied per week vs final exam percentage",
+      r: 0.72,
+      interpretation: "Strong positive correlation",
+      strength: "Strong",
+      direction: "Positive",
+      practicalMeaning: "More study time is strongly associated with higher test scores. Hard work pays off!",
       data: [
-        { x: 65, y: 140 }, { x: 67, y: 155 }, { x: 69, y: 170 }, { x: 71, y: 185 },
-        { x: 73, y: 200 }, { x: 66, y: 148 }, { x: 68, y: 162 }, { x: 70, y: 178 }
-      ],
-      correlationValue: 0.85,
-      interpretation: "Strong positive linear relationship - taller people tend to weigh more, with some individual variation.",
-      strengthDescription: "Strong (r = +0.85): Very reliable relationship with some scatter",
-      practicalMeaning: "Height is an excellent predictor of weight, though individual body composition creates some variation.",
-      visualDescription: "Points cluster tightly around an upward-sloping line with minimal scatter."
+        { x: 5, y: 65 }, { x: 10, y: 75 }, { x: 15, y: 85 }, { x: 20, y: 90 }, { x: 25, y: 95 }
+      ]
     },
     {
-      name: "Moderate Positive Correlation",
-      context: "Years of education vs annual income",
+      name: "Temperature vs Ice Cream Sales",
+      context: "Daily temperature vs ice cream sales",
+      r: 0.68,
+      interpretation: "Moderate positive correlation",
+      strength: "Moderate",
+      direction: "Positive",
+      practicalMeaning: "Warmer days lead to higher ice cream sales, but other factors also matter (day of week, events, etc.)",
       data: [
-        { x: 12, y: 35000 }, { x: 14, y: 42000 }, { x: 16, y: 55000 }, { x: 18, y: 68000 },
-        { x: 20, y: 75000 }, { x: 13, y: 38000 }, { x: 15, y: 48000 }, { x: 17, y: 62000 }
-      ],
-      correlationValue: 0.65,
-      interpretation: "Moderate positive linear relationship - more education generally leads to higher income, but with considerable variation.",
-      strengthDescription: "Moderate (r = +0.65): Clear relationship but substantial individual differences",
-      practicalMeaning: "Education matters for income, but many other factors (skills, opportunities, field) also play important roles.",
-      visualDescription: "Points show clear upward trend but with noticeable scatter around the pattern line."
+        { x: 60, y: 200 }, { x: 70, y: 350 }, { x: 80, y: 500 }, { x: 90, y: 650 }, { x: 100, y: 800 }
+      ]
     },
     {
-      name: "Weak Positive Correlation",
-      context: "Hours of TV watched vs body weight",
+      name: "Car Age vs Value",
+      context: "Age of car in years vs resale value",
+      r: -0.82,
+      interpretation: "Strong negative correlation",
+      strength: "Strong",
+      direction: "Negative",
+      practicalMeaning: "As cars get older, their value decreases significantly. Depreciation is real!",
       data: [
-        { x: 2, y: 160 }, { x: 4, y: 170 }, { x: 6, y: 180 }, { x: 8, y: 190 },
-        { x: 3, y: 155 }, { x: 5, y: 185 }, { x: 7, y: 165 }, { x: 9, y: 195 }
-      ],
-      correlationValue: 0.35,
-      interpretation: "Weak positive linear relationship - slight tendency for more TV watching to associate with higher weight, but lots of individual variation.",
-      strengthDescription: "Weak (r = +0.35): Relationship barely visible through the scatter",
-      practicalMeaning: "TV watching has minimal predictive value for weight - many other lifestyle factors are more important.",
-      visualDescription: "Slight upward trend visible but with substantial scatter making pattern hard to see."
+        { x: 1, y: 25000 }, { x: 3, y: 18000 }, { x: 5, y: 12000 }, { x: 8, y: 8000 }, { x: 12, y: 4000 }
+      ]
     },
     {
-      name: "Strong Negative Correlation",
-      context: "Car age vs resale value",
+      name: "Exercise vs Resting Heart Rate",
+      context: "Weekly exercise hours vs resting heart rate",
+      r: -0.65,
+      interpretation: "Moderate negative correlation",
+      strength: "Moderate",
+      direction: "Negative",
+      practicalMeaning: "More exercise is associated with lower resting heart rate. Fitness improves cardiovascular health!",
       data: [
-        { x: 1, y: 28000 }, { x: 3, y: 22000 }, { x: 5, y: 16000 }, { x: 7, y: 10000 },
-        { x: 9, y: 4000 }, { x: 2, y: 25000 }, { x: 4, y: 19000 }, { x: 6, y: 13000 }
-      ],
-      correlationValue: -0.92,
-      interpretation: "Strong negative linear relationship - as cars age, their value decreases very predictably.",
-      strengthDescription: "Strong Negative (r = -0.92): Very reliable inverse relationship",
-      practicalMeaning: "Car age is an excellent predictor of depreciation - older cars are consistently worth less.",
-      visualDescription: "Points cluster tightly around a downward-sloping line with minimal scatter."
+        { x: 0, y: 80 }, { x: 2, y: 75 }, { x: 5, y: 68 }, { x: 8, y: 62 }, { x: 12, y: 58 }
+      ]
     },
     {
-      name: "No Correlation",
-      context: "Shoe size vs GPA in college students",
+      name: "Student ID vs GPA",
+      context: "Random student ID numbers vs GPA",
+      r: 0.03,
+      interpretation: "Very weak correlation (essentially no relationship)",
+      strength: "Very Weak",
+      direction: "None",
+      practicalMeaning: "Student ID numbers are random and have no meaningful relationship with academic performance.",
       data: [
-        { x: 8, y: 3.2 }, { x: 9, y: 2.8 }, { x: 10, y: 3.7 }, { x: 11, y: 3.1 },
-        { x: 8.5, y: 3.9 }, { x: 9.5, y: 2.5 }, { x: 10.5, y: 3.4 }, { x: 11.5, y: 3.6 }
-      ],
-      correlationValue: 0.02,
-      interpretation: "No linear relationship - shoe size and academic performance are unrelated.",
-      strengthDescription: "No Correlation (r ≈ 0): No linear relationship exists",
-      practicalMeaning: "Shoe size provides no information about academic performance - these variables are independent.",
-      visualDescription: "Points are randomly scattered with no discernible pattern in any direction."
+        { x: 1001, y: 2.8 }, { x: 1234, y: 3.5 }, { x: 1567, y: 2.1 }, { x: 1890, y: 3.9 }, { x: 1999, y: 2.6 }
+      ]
     }
   ];
 
   const challenges: Challenge[] = [
     {
       id: 1,
-      scenario: "Student Performance Analysis",
-      correlationValue: 0.73,
-      questionType: 'interpretation',
-      question: "The correlation between study hours and test scores is r = 0.73. What does this tell us?",
+      scenario: "Height and shoe size correlation in adults",
+      r: 0.89,
+      question: "What does r = 0.89 tell us about the relationship between height and shoe size?",
       options: [
-        "Study hours perfectly predict test scores",
-        "There's a strong positive relationship - more study generally means higher scores",
-        "Study hours and test scores are unrelated",
-        "The relationship is weak and not meaningful"
+        "Strong positive correlation - taller people tend to have larger feet",
+        "Perfect correlation - height exactly determines shoe size",
+        "Weak correlation - height and shoe size are barely related",
+        "Negative correlation - taller people have smaller feet"
       ],
-      correctAnswer: "There's a strong positive relationship - more study generally means higher scores",
-      explanation: "r = 0.73 indicates a strong positive correlation. Values above 0.7 show strong relationships, meaning study hours are a good (but not perfect) predictor of test scores.",
-      skillFocus: "Interpreting correlation coefficients in terms of relationship strength and direction"
+      correctAnswer: "Strong positive correlation - taller people tend to have larger feet",
+      explanation: "r = 0.89 indicates a strong positive correlation. Values close to +1.0 show strong positive relationships, meaning as one variable increases, the other tends to increase as well."
     },
     {
       id: 2,
-      scenario: "Market Research Data",
-      correlationValue: -0.45,
-      questionType: 'strength',
-      question: "A correlation of r = -0.45 between price and sales volume should be classified as:",
+      scenario: "Daily temperature and heating costs",
+      r: -0.76,
+      question: "What does r = -0.76 suggest about temperature and heating costs?",
       options: [
-        "Strong negative correlation",
-        "Moderate negative correlation",
-        "Weak negative correlation",
-        "No correlation"
+        "Strong positive correlation - warmer days mean higher heating costs",
+        "No correlation - temperature doesn't affect heating costs",
+        "Strong negative correlation - warmer days mean lower heating costs",
+        "Perfect negative correlation - temperature exactly determines heating costs"
       ],
-      correctAnswer: "Moderate negative correlation",
-      explanation: "r = -0.45 falls in the moderate range (typically 0.3 to 0.7 in absolute value). The negative sign indicates that higher prices are associated with lower sales volume, which makes business sense.",
-      skillFocus: "Classifying correlation strength using standard guidelines"
+      correctAnswer: "Strong negative correlation - warmer days mean lower heating costs",
+      explanation: "r = -0.76 shows a strong negative correlation. The negative sign indicates that as temperature increases, heating costs decrease, which makes perfect sense!"
     },
     {
       id: 3,
-      scenario: "Health Study Results",
-      correlationValue: 0.15,
-      questionType: 'application',
-      question: "Exercise frequency and cholesterol levels show r = 0.15. What should a doctor conclude?",
+      scenario: "Random lottery numbers and winner income",
+      r: 0.02,
+      question: "What does r = 0.02 tell us about lottery numbers and winner income?",
       options: [
-        "Exercise is highly effective for reducing cholesterol",
-        "Exercise has little individual effect on cholesterol levels",
-        "Exercise increases cholesterol levels",
-        "The study methodology was flawed"
+        "Strong positive correlation",
+        "Moderate positive correlation", 
+        "Essentially no correlation - the variables are unrelated",
+        "Weak negative correlation"
       ],
-      correctAnswer: "Exercise has little individual effect on cholesterol levels",
-      explanation: "r = 0.15 is a very weak positive correlation. While there might be a slight relationship, exercise alone is not a strong predictor of cholesterol levels. Other factors (diet, genetics, age) likely have much greater influence.",
-      skillFocus: "Making practical decisions based on correlation strength in professional contexts"
+      correctAnswer: "Essentially no correlation - the variables are unrelated",
+      explanation: "r = 0.02 is very close to 0, indicating essentially no linear relationship. Lottery numbers are random and have no meaningful connection to winner income."
     },
     {
       id: 4,
-      scenario: "Quality Control Analysis",
-      correlationValue: -0.89,
-      questionType: 'comparison',
-      question: "Which correlation indicates the strongest relationship?",
+      scenario: "Social media followers and happiness scores",
+      r: 0.45,
+      question: "How would you interpret r = 0.45 for followers vs happiness?",
       options: [
-        "r = 0.76 (temperature vs ice cream sales)",
-        "r = -0.89 (defect rate vs customer satisfaction)", 
-        "r = 0.82 (advertising spend vs revenue)",
-        "r = -0.34 (price vs demand)"
+        "Strong positive correlation",
+        "Moderate positive correlation - some relationship exists",
+        "Perfect correlation",
+        "No correlation"
       ],
-      correctAnswer: "r = -0.89 (defect rate vs customer satisfaction)",
-      explanation: "Correlation strength is determined by the absolute value (ignoring the sign). |-0.89| = 0.89 is the highest, making this the strongest relationship regardless of being negative.",
-      skillFocus: "Comparing correlation strengths by focusing on absolute values"
+      correctAnswer: "Moderate positive correlation - some relationship exists",
+      explanation: "r = 0.45 indicates a moderate positive correlation. There's a noticeable relationship, but it's not overwhelmingly strong. Other factors besides followers likely influence happiness."
     },
     {
       id: 5,
-      scenario: "Educational Research",
-      correlationValue: 0.91,
-      questionType: 'interpretation',
-      question: "Class size and student achievement show r = 0.91. What's the most accurate interpretation?",
+      scenario: "Years of education and lifetime earnings",
+      r: 0.91,
+      question: "What does r = 0.91 suggest about education and earnings?",
       options: [
-        "Large classes cause poor student performance",
-        "There's a very strong positive association that needs investigation",
-        "Class size perfectly predicts achievement",
-        "This correlation is impossible and indicates data error"
+        "Weak relationship between education and earnings",
+        "Education causes higher earnings",
+        "Very strong positive correlation - education and earnings move together closely",
+        "Perfect correlation - education exactly determines earnings"
       ],
-      correctAnswer: "There's a very strong positive association that needs investigation",
-      explanation: "r = 0.91 shows a very strong positive relationship, but correlation doesn't prove causation. The positive value is surprising (usually smaller classes are better), so this needs investigation - perhaps larger classes occur in better-funded schools with more resources.",
-      skillFocus: "Interpreting unexpected correlation results and avoiding causal assumptions"
+      correctAnswer: "Very strong positive correlation - education and earnings move together closely",
+      explanation: "r = 0.91 shows a very strong positive correlation. While correlation doesn't prove causation, this strong relationship suggests education and earnings are closely linked."
     },
     {
       id: 6,
-      scenario: "Manufacturing Process",
-      correlationValue: -0.02,
-      questionType: 'application',
-      question: "Machine age and product quality show r = -0.02. What should the production manager do?",
+      scenario: "Age of smartphone and battery life",
+      r: -0.88,
+      question: "What does r = -0.88 tell us about phone age and battery life?",
       options: [
-        "Immediately replace all old machines",
-        "Focus on other factors affecting quality since age isn't important",
-        "Conclude that older machines produce better quality",
-        "Collect more data because the correlation is too weak"
+        "Older phones have better battery life",
+        "No relationship between age and battery",
+        "Strong negative correlation - older phones tend to have worse battery life",
+        "Weak negative correlation"
       ],
-      correctAnswer: "Focus on other factors affecting quality since age isn't important",
-      explanation: "r = -0.02 indicates essentially no relationship between machine age and quality. The manager should investigate other factors like operator training, maintenance, materials, or environmental conditions that might affect quality.",
-      skillFocus: "Using correlation analysis to guide practical decision-making and resource allocation"
+      correctAnswer: "Strong negative correlation - older phones tend to have worse battery life",
+      explanation: "r = -0.88 indicates a strong negative correlation. As phones age, battery life tends to decrease significantly due to battery degradation over time."
     }
   ];
-
-  const calculateCorrelation = (xData: number[], yData: number[]): number => {
-    if (xData.length !== yData.length || xData.length < 2) return NaN;
-    
-    const n = xData.length;
-    const meanX = xData.reduce((sum, x) => sum + x, 0) / n;
-    const meanY = yData.reduce((sum, y) => sum + y, 0) / n;
-    
-    let numerator = 0;
-    let denomX = 0;
-    let denomY = 0;
-    
-    for (let i = 0; i < n; i++) {
-      const diffX = xData[i] - meanX;
-      const diffY = yData[i] - meanY;
-      numerator += diffX * diffY;
-      denomX += diffX * diffX;
-      denomY += diffY * diffY;
-    }
-    
-    const denominator = Math.sqrt(denomX * denomY);
-    return denominator === 0 ? NaN : numerator / denominator;
-  };
-
-  const interpretCorrelation = (r: number): string => {
-    const absR = Math.abs(r);
-    const direction = r > 0 ? 'positive' : r < 0 ? 'negative' : 'no';
-    
-    if (absR >= 0.9) return `Very strong ${direction} correlation`;
-    if (absR >= 0.7) return `Strong ${direction} correlation`;
-    if (absR >= 0.5) return `Moderate ${direction} correlation`;
-    if (absR >= 0.3) return `Weak ${direction} correlation`;
-    if (absR >= 0.1) return `Very weak ${direction} correlation`;
-    return 'No meaningful correlation';
-  };
-
-  const parseData = (dataString: string): number[] => {
-    return dataString.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
-  };
 
   const startGame = () => {
     setGameStarted(true);
@@ -288,7 +227,7 @@ export default function CorrelationCoefficient() {
       } else {
         setGameEnded(true);
       }
-    }, 4000);
+    }, 3000);
   };
 
   const restartGame = () => {
@@ -304,20 +243,18 @@ export default function CorrelationCoefficient() {
     const currentChallengeData = challenges[currentChallenge];
 
     return (
-      <main className="min-h-screen py-12 bg-gray-50">
+      <div className="min-h-screen py-12 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Navigation */}
           <div className="mb-8">
             <Link href="/chapters/6" className="text-[#ff8200] hover:text-[#ff9933]">
               ← Back to Correlation
             </Link>
           </div>
 
-          {/* Game Header */}
           <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
             <div className="flex justify-between items-center">
               <div>
-                <h1 className="text-2xl font-bold text-[#58595b]">Correlation Coefficient Master</h1>
+                <h1 className="text-2xl font-bold text-[#58595b]">Correlation Expert</h1>
                 <p className="text-gray-600">Challenge {currentChallenge + 1} of {challenges.length}</p>
               </div>
               <div className="text-right">
@@ -332,19 +269,23 @@ export default function CorrelationCoefficient() {
             </div>
           </div>
 
-          {/* Challenge */}
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="mb-6">
               <h2 className="text-xl font-semibold text-[#58595b] mb-4">
-                📊 {currentChallengeData.scenario}
+                📊 Correlation Analysis
               </h2>
               
               <div className="bg-gray-50 p-6 rounded-lg mb-6">
-                <div className="text-center mb-4">
-                  <div className="text-4xl font-bold text-[#ff8200] mb-2">
-                    r = {currentChallengeData.correlationValue > 0 ? '+' : ''}{currentChallengeData.correlationValue}
+                <div className="mb-4">
+                  <h4 className="font-semibold text-gray-700 mb-2">Scenario:</h4>
+                  <p className="text-gray-600">{currentChallengeData.scenario}</p>
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-blue-600">r = {currentChallengeData.r}</div>
+                    <div className="text-sm text-blue-500">Correlation Coefficient</div>
                   </div>
-                  <div className="text-sm text-gray-600">Correlation Coefficient</div>
                 </div>
                 
                 <div className="border-l-4 border-[#ff8200] pl-4">
@@ -384,7 +325,6 @@ export default function CorrelationCoefficient() {
             </div>
           </div>
 
-          {/* Feedback Modal */}
           {showFeedback && (
             <div className="fixed inset-0 flex items-center justify-center z-50">
               <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -397,42 +337,27 @@ export default function CorrelationCoefficient() {
                     {selectedAnswer === currentChallengeData.correctAnswer ? 'Excellent!' : 'Not Quite Right'}
                   </h3>
                 </div>
-
-                <div className="mb-6 space-y-4">
-                  <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                    <h4 className="font-semibold text-blue-700 mb-2">💡 Explanation</h4>
-                    <p className="text-blue-600 text-sm">{currentChallengeData.explanation}</p>
-                  </div>
-                  
-                  <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
-                    <h4 className="font-semibold text-green-700 mb-2">🎯 Skill Focus</h4>
-                    <p className="text-green-600 text-sm">{currentChallengeData.skillFocus}</p>
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <p className="text-sm text-gray-500">Next challenge in 4 seconds...</p>
+                <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                  <p className="text-blue-600 text-sm">{currentChallengeData.explanation}</p>
                 </div>
               </div>
             </div>
           )}
         </div>
-      </main>
+      </div>
     );
   }
 
   if (gameEnded) {
     return (
-      <main className="min-h-screen py-12 bg-gray-50">
+      <div className="min-h-screen py-12 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Navigation */}
           <div className="mb-8">
             <Link href="/chapters/6" className="text-[#ff8200] hover:text-[#ff9933]">
               ← Back to Correlation
             </Link>
           </div>
 
-          {/* Results */}
           <div className="bg-white rounded-lg shadow-lg p-8 text-center">
             <div className="text-6xl mb-4">
               {score >= 5 ? '🎉' : score >= 4 ? '👍' : '📚'}
@@ -470,235 +395,96 @@ export default function CorrelationCoefficient() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
-  const selectedCorrExample = examples[selectedExample];
-  const calculatorXData = parseData(calculatorDataX);
-  const calculatorYData = parseData(calculatorDataY);
-  const calculatorR = calculateCorrelation(calculatorXData, calculatorYData);
+  const selectedCorrelationExample = examples[selectedExample];
 
   return (
-    <main className="min-h-screen py-12 bg-gray-50">
+    <div className="min-h-screen py-12 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Navigation */}
         <div className="mb-8">
           <Link href="/chapters/6" className="text-[#ff8200] hover:text-[#ff9933]">
             ← Back to Correlation
           </Link>
         </div>
 
-        {/* Title Section */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
           <div className="flex items-start gap-4">
             <div className="bg-[#e7e7e7] rounded-lg p-4">
-              <span role="img" aria-label="correlation coefficient" className="text-4xl">📊</span>
+              <span className="text-4xl">📊</span>
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-[#58595b]">Correlation Coefficient</h1>
+              <h1 className="text-4xl font-bold text-[#58595b]">The Correlation Coefficient (r)</h1>
               <p className="text-xl text-gray-600 mt-2">
-                Master the numerical measurement of relationships! Learn to calculate, interpret, and apply the correlation coefficient (r).
+                Unlock the power of 'r'! Master what correlation coefficients from -1 to +1 really mean, interpret strength and direction, and understand the mathematical properties of correlation.
               </p>
             </div>
           </div>
         </div>
 
-        {/* What is the Correlation Coefficient */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🎯 What is the Correlation Coefficient?</h2>
+          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🎯 Understanding the r Value</h2>
           
-          <div className="space-y-6">
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-              <div className="flex items-start gap-3">
-                <span className="text-3xl">📏</span>
-                <div>
-                  <h3 className="font-bold text-yellow-700 mb-2">The Relationship Ruler</h3>
-                  <p className="text-yellow-600">
-                    The correlation coefficient (r) is a single number between -1 and +1 that captures both the 
-                    direction and strength of a linear relationship. It's like having a precision measuring tool 
-                    that tells you exactly how closely two variables are related!
-                  </p>
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg mb-6">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-700 mb-4">r: The Correlation Coefficient</h3>
+              <p className="text-lg text-gray-600 mb-4">
+                The correlation coefficient 'r' measures both the strength and direction of a linear relationship between two quantitative variables.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <div className="font-bold text-red-600">Range: -1 to +1</div>
+                  <div className="text-gray-600">Always between these bounds</div>
                 </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="border border-green-200 rounded-lg p-4 text-center">
-                <h4 className="font-bold text-green-700 mb-2">📏 Scale: -1 to +1</h4>
-                <ul className="text-green-600 text-sm space-y-1">
-                  <li>• +1: Perfect positive relationship</li>
-                  <li>• 0: No linear relationship</li>
-                  <li>• -1: Perfect negative relationship</li>
-                </ul>
-              </div>
-
-              <div className="border border-blue-200 rounded-lg p-4 text-center">
-                <h4 className="font-bold text-blue-700 mb-2">🧭 Direction</h4>
-                <ul className="text-blue-600 text-sm space-y-1">
-                  <li>• Positive r: Variables increase together</li>
-                  <li>• Negative r: One increases, other decreases</li>
-                  <li>• Sign tells you the direction</li>
-                </ul>
-              </div>
-
-              <div className="border border-purple-200 rounded-lg p-4 text-center">
-                <h4 className="font-bold text-purple-700 mb-2">💪 Strength</h4>
-                <ul className="text-purple-600 text-sm space-y-1">
-                  <li>• Closer to ±1: Stronger relationship</li>
-                  <li>• Closer to 0: Weaker relationship</li>
-                  <li>• Absolute value shows strength</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Correlation Scale */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-[#58595b] mb-6">📊 The Correlation Scale</h2>
-          
-          <div className="space-y-6">
-            <div className="bg-gradient-to-r from-red-100 via-yellow-100 via-green-100 to-blue-100 p-6 rounded-lg">
-              <h3 className="text-center font-bold text-gray-700 mb-6">Correlation Strength Guidelines</h3>
-              
-              <div className="relative">
-                {/* Scale Line */}
-                <div className="w-full h-4 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 to-blue-500 rounded-full mb-4"></div>
-                
-                {/* Scale Labels */}
-                <div className="flex justify-between text-sm font-bold">
-                  <span className="text-red-600">-1.0</span>
-                  <span className="text-red-500">-0.7</span>
-                  <span className="text-orange-500">-0.5</span>
-                  <span className="text-yellow-600">-0.3</span>
-                  <span className="text-gray-600">0</span>
-                  <span className="text-green-600">+0.3</span>
-                  <span className="text-green-500">+0.5</span>
-                  <span className="text-blue-500">+0.7</span>
-                  <span className="text-blue-600">+1.0</span>
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <div className="font-bold text-blue-600">Direction</div>
+                  <div className="text-gray-600">+ or - sign shows direction</div>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
-                <div className="text-center bg-white p-3 rounded shadow">
-                  <div className="font-bold text-red-600">Perfect</div>
-                  <div className="text-xs text-gray-600">r = ±1.0</div>
-                  <div className="text-xs text-red-500">All points on line</div>
-                </div>
-                <div className="text-center bg-white p-3 rounded shadow">
-                  <div className="font-bold text-orange-600">Strong</div>
-                  <div className="text-xs text-gray-600">|r| ≥ 0.7</div>
-                  <div className="text-xs text-orange-500">Close to pattern</div>
-                </div>
-                <div className="text-center bg-white p-3 rounded shadow">
-                  <div className="font-bold text-yellow-600">Moderate</div>
-                  <div className="text-xs text-gray-600">|r| = 0.3-0.7</div>
-                  <div className="text-xs text-yellow-600">Clear pattern</div>
-                </div>
-                <div className="text-center bg-white p-3 rounded shadow">
-                  <div className="font-bold text-green-600">Weak</div>
-                  <div className="text-xs text-gray-600">|r| = 0.1-0.3</div>
-                  <div className="text-xs text-green-600">Slight pattern</div>
-                </div>
-                <div className="text-center bg-white p-3 rounded shadow">
-                  <div className="font-bold text-gray-600">None</div>
-                  <div className="text-xs text-gray-600">|r| < 0.1</div>
-                  <div className="text-xs text-gray-500">No pattern</div>
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <div className="font-bold text-green-600">Strength</div>
+                  <div className="text-gray-600">Closer to ±1 = stronger</div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Interactive Calculator */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🧮 Interactive Correlation Calculator</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-[#58595b]">Enter Your Data:</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    X Values (comma-separated)
-                  </label>
-                  <input
-                    type="text"
-                    value={calculatorDataX}
-                    onChange={(e) => setCalculatorDataX(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff8200] focus:border-transparent"
-                    placeholder="e.g., 1,2,3,4,5"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Y Values (comma-separated)
-                  </label>
-                  <input
-                    type="text"
-                    value={calculatorDataY}
-                    onChange={(e) => setCalculatorDataY(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff8200] focus:border-transparent"
-                    placeholder="e.g., 2,4,6,8,10"
-                  />
-                </div>
-                
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <div className="text-sm text-gray-600">
-                    <strong>Sample datasets to try:</strong>
-                    <ul className="mt-2 space-y-1">
-                      <li>• Perfect positive: X: 1,2,3,4,5 Y: 2,4,6,8,10</li>
-                      <li>• Strong negative: X: 1,2,3,4,5 Y: 10,8,6,4,2</li>
-                      <li>• No correlation: X: 1,2,3,4,5 Y: 3,7,2,9,5</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+              <h4 className="font-bold text-green-700 mb-3">Positive Correlation (+)</h4>
+              <ul className="space-y-2 text-green-600 text-sm">
+                <li>• r = +1.0: Perfect positive (impossible in real data)</li>
+                <li>• r = +0.8 to +0.9: Very strong positive</li>
+                <li>• r = +0.6 to +0.8: Strong positive</li>
+                <li>• r = +0.3 to +0.6: Moderate positive</li>
+                <li>• r = +0.1 to +0.3: Weak positive</li>
+              </ul>
             </div>
-            
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-[#58595b]">Calculation Results:</h3>
-              
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <div className="text-center mb-4">
-                  <div className="text-4xl font-bold text-[#ff8200] mb-2">
-                    r = {isNaN(calculatorR) ? '---' : (calculatorR >= 0 ? '+' : '') + calculatorR.toFixed(3)}
-                  </div>
-                  <div className="text-sm text-gray-600">Correlation Coefficient</div>
-                </div>
-                
-                {!isNaN(calculatorR) && (
-                  <div className="space-y-3">
-                    <div className="bg-white p-4 rounded border">
-                      <div className="font-semibold text-gray-700 mb-2">Interpretation:</div>
-                      <div className="text-gray-600 text-sm">
-                        {interpretCorrelation(calculatorR)}
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white p-4 rounded border">
-                      <div className="font-semibold text-gray-700 mb-2">Practical Meaning:</div>
-                      <div className="text-gray-600 text-sm">
-                        {Math.abs(calculatorR) > 0.7 ? 'Strong predictive relationship - one variable is a good predictor of the other.' :
-                         Math.abs(calculatorR) > 0.3 ? 'Moderate relationship - variables are related but with substantial individual variation.' :
-                         'Weak or no relationship - variables provide little predictive value for each other.'}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
+
+            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+              <h4 className="font-bold text-red-700 mb-3">Negative Correlation (-)</h4>
+              <ul className="space-y-2 text-red-600 text-sm">
+                <li>• r = -1.0: Perfect negative (impossible in real data)</li>
+                <li>• r = -0.8 to -0.9: Very strong negative</li>
+                <li>• r = -0.6 to -0.8: Strong negative</li>
+                <li>• r = -0.3 to -0.6: Moderate negative</li>
+                <li>• r = -0.1 to -0.3: Weak negative</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mt-6">
+            <div className="text-center">
+              <h4 className="font-bold text-gray-700 mb-2">No Correlation</h4>
+              <p className="text-gray-600 text-sm">r ≈ 0 (typically -0.1 to +0.1): No linear relationship</p>
             </div>
           </div>
         </div>
 
-        {/* Real-World Examples */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🌍 Real-World Correlation Examples</h2>
+          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🌟 Real-World r Examples</h2>
           
-          {/* Example Selection */}
           <div className="flex flex-wrap gap-2 mb-6">
             {examples.map((example, index) => (
               <button
@@ -710,126 +496,126 @@ export default function CorrelationCoefficient() {
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
-                r = {example.correlationValue}
+                {example.name}
               </button>
             ))}
           </div>
 
-          {/* Selected Example Display */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-bold text-[#58595b] mb-2">{selectedCorrExample.name}</h3>
-              <p className="text-gray-600 mb-4">{selectedCorrExample.context}</p>
+              <h3 className="text-lg font-bold text-[#58595b] mb-2">{selectedCorrelationExample.name}</h3>
+              <p className="text-gray-600 mb-4">{selectedCorrelationExample.context}</p>
             </div>
 
-            {/* Correlation Details */}
             <div className="bg-gray-50 p-6 rounded-lg">
-              <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-[#ff8200] mb-2">
-                  r = {selectedCorrExample.correlationValue > 0 ? '+' : ''}{selectedCorrExample.correlationValue}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-6">
+                <div>
+                  <div className="text-3xl font-bold text-[#ff8200]">
+                    {selectedCorrelationExample.r > 0 ? '+' : ''}{selectedCorrelationExample.r}
+                  </div>
+                  <div className="text-sm text-gray-600">r Value</div>
                 </div>
-                <div className="text-lg font-semibold text-gray-700">{selectedCorrExample.strengthDescription}</div>
+                <div>
+                  <div className="text-xl font-bold text-[#58595b]">{selectedCorrelationExample.strength}</div>
+                  <div className="text-sm text-gray-600">Strength</div>
+                </div>
+                <div>
+                  <div className="text-xl font-bold text-[#58595b]">{selectedCorrelationExample.direction}</div>
+                  <div className="text-sm text-gray-600">Direction</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl">
+                    {selectedCorrelationExample.r > 0.7 ? '💪' : 
+                     selectedCorrelationExample.r > 0.3 ? '👍' : 
+                     selectedCorrelationExample.r < -0.7 ? '⬇️' :
+                     selectedCorrelationExample.r < -0.3 ? '📉' : '🤷'}
+                  </div>
+                  <div className="text-sm text-gray-600">Visual</div>
+                </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-4 rounded border">
-                  <h4 className="font-semibold text-gray-700 mb-2">Sample Data Points:</h4>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    {selectedCorrExample.data.slice(0, 6).map((point, index) => (
-                      <div key={index} className="bg-gray-50 p-2 rounded text-center">
-                        ({point.x}, {point.y})
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="bg-white p-4 rounded border">
-                  <h4 className="font-semibold text-gray-700 mb-2">Visual Pattern:</h4>
-                  <p className="text-gray-600 text-sm">{selectedCorrExample.visualDescription}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Analysis */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 className="font-bold text-blue-700 mb-2">🔍 Statistical Interpretation</h4>
-                <p className="text-blue-600 text-sm">{selectedCorrExample.interpretation}</p>
-              </div>
-
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <h4 className="font-bold text-green-700 mb-2">💼 Practical Meaning</h4>
-                <p className="text-green-600 text-sm">{selectedCorrExample.practicalMeaning}</p>
+                <p className="text-blue-700 font-medium">💡 What This Means:</p>
+                <p className="text-blue-600 text-sm">{selectedCorrelationExample.practicalMeaning}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Key Properties */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🔑 Key Properties of Correlation</h2>
+          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🔬 Key Properties of r</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 className="font-bold text-blue-700 mb-2">📏 Scale Independence</h4>
-                <p className="text-blue-600 text-sm">
-                  Correlation is unitless - changing from inches to centimeters or dollars to euros doesn't change r. 
-                  This makes it perfect for comparing relationships across different measurement scales.
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="border-l-4 border-blue-500 pl-6">
+                <h3 className="text-lg font-semibold text-[#58595b] mb-2">📏 Unit-Free</h3>
+                <p className="text-gray-600 text-sm">
+                  r has no units! Whether you measure height in inches or centimeters, the correlation with weight stays the same. 
+                  This makes r perfect for comparing relationships across different scales.
                 </p>
               </div>
 
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <h4 className="font-bold text-green-700 mb-2">📐 Linear Relationships Only</h4>
-                <p className="text-green-600 text-sm">
-                  Correlation measures only linear relationships. Variables with strong curved relationships 
-                  might have low correlation coefficients - always look at scatterplots first!
+              <div className="border-l-4 border-green-500 pl-6">
+                <h3 className="text-lg font-semibold text-[#58595b] mb-2">🔄 Symmetric</h3>
+                <p className="text-gray-600 text-sm">
+                  The correlation between X and Y equals the correlation between Y and X. 
+                  Height vs weight gives the same r as weight vs height.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-purple-500 pl-6">
+                <h3 className="text-lg font-semibold text-[#58595b] mb-2">📈 Linear Only</h3>
+                <p className="text-gray-600 text-sm">
+                  r measures LINEAR relationships only! A perfect curved relationship might have r ≈ 0. 
+                  Always look at the scatterplot first!
+                </p>
+              </div>
+
+              <div className="border-l-4 border-red-500 pl-6">
+                <h3 className="text-lg font-semibold text-[#58595b] mb-2">🚨 Outlier Sensitive</h3>
+                <p className="text-gray-600 text-sm">
+                  Extreme outliers can dramatically change r. One unusual point can make a strong correlation look weak, 
+                  or create a false correlation where none exists.
                 </p>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                <h4 className="font-bold text-purple-700 mb-2">⚠️ Outlier Sensitivity</h4>
-                <p className="text-purple-600 text-sm">
-                  Single extreme points can dramatically change correlation values. Always check for outliers 
-                  and consider their impact on your interpretation.
-                </p>
-              </div>
-
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                <h4 className="font-bold text-orange-700 mb-2">🚫 Not Causation</h4>
-                <p className="text-orange-600 text-sm">
-                  High correlation doesn't prove causation! Ice cream sales and drowning incidents are correlated, 
-                  but ice cream doesn't cause drowning - both increase in summer.
-                </p>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+              <div className="flex items-start gap-3">
+                <span className="text-3xl">⚠️</span>
+                <div>
+                  <h3 className="font-bold text-yellow-700 mb-2">Critical Reminder!</h3>
+                  <p className="text-yellow-600">
+                    <strong>Correlation ≠ Causation!</strong> Even if r = 0.95, this doesn't prove one variable causes the other. 
+                    Strong correlations can result from confounding variables, reverse causation, or pure coincidence.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Interactive Challenge */}
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🎮 Correlation Coefficient Challenge</h2>
+          <h2 className="text-2xl font-bold text-[#58595b] mb-6">🎮 Master the Correlation Coefficient</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
-              <h3 className="text-lg font-semibold text-[#58595b] mb-4">How to Play</h3>
+              <h3 className="text-lg font-semibold text-[#58595b] mb-4">Challenge Yourself</h3>
               <ul className="space-y-2 text-gray-600">
-                <li>• Interpret correlation coefficients accurately</li>
-                <li>• Classify relationship strength</li>
-                <li>• Apply correlation in real-world contexts</li>
-                <li>• Make professional statistical decisions</li>
+                <li>• Interpret r values from -1 to +1</li>
+                <li>• Identify strength and direction</li>
+                <li>• Apply to real-world scenarios</li>
+                <li>• Understand what different r values mean</li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold text-[#58595b] mb-4">Skills You'll Master</h3>
+              <h3 className="text-lg font-semibold text-[#58595b] mb-4">You'll Practice</h3>
               <ul className="space-y-2 text-gray-600">
-                <li>• Correlation interpretation fluency</li>
-                <li>• Strength classification accuracy</li>
-                <li>• Professional statistical communication</li>
-                <li>• Evidence-based decision making</li>
+                <li>• Height and shoe size relationships</li>
+                <li>• Temperature and heating costs</li>
+                <li>• Education and earnings connections</li>
+                <li>• Technology and performance metrics</li>
               </ul>
             </div>
           </div>
@@ -839,11 +625,11 @@ export default function CorrelationCoefficient() {
               onClick={startGame}
               className="bg-[#ff8200] hover:bg-[#ff9933] text-white font-bold py-3 px-8 rounded-lg shadow transition-colors"
             >
-              Master Correlation Coefficients
+              Master Correlation Coefficient
             </button>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
